@@ -7,7 +7,9 @@ namespace App\Models;
 use Carbon\CarbonInterface;
 use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -20,6 +22,7 @@ use Illuminate\Notifications\Notifiable;
  * @property-read string|null $remember_token
  * @property-read CarbonInterface $created_at
  * @property-read CarbonInterface $updated_at
+ * @property-read Collection<int, Mail> $mails
  */
 final class User extends Authenticatable implements MustVerifyEmail
 {
@@ -33,6 +36,14 @@ final class User extends Authenticatable implements MustVerifyEmail
         'password',
         'remember_token',
     ];
+
+    /**
+     * @return HasMany<Mail, $this>
+     */
+    public function mails(): HasMany
+    {
+        return $this->hasMany(Mail::class);
+    }
 
     /**
      * @return array<string, string>
