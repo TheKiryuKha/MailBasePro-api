@@ -1,4 +1,4 @@
-# API for Managing
+# API for managing customer email address databases
 
 
 # MailBase PRO API is a server solution for creating and managing a database with customers emails.
