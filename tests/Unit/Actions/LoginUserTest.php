@@ -27,3 +27,16 @@ it('throws exception for invalid credentials', function (): void {
         'password' => 'wrongpassword',
     ]))->toThrow(Exception::class, 'Invalid credentials');
 });
+
+it("delete's other tokens", function (): void {
+    $user = User::factory()->create();
+    $user->createToken('fs');
+    $action = app(LoginUser::class);
+
+    $token = $action->handle([
+        'email' => $user->email,
+        'password' => 'password',
+    ]);
+
+    expect($user->tokens()->count())->toBe(1);
+});

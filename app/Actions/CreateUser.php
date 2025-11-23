@@ -9,11 +9,7 @@ use App\Models\User;
 final readonly class CreateUser
 {
     /**
-     * @param  array{
-     * name: string,
-     * email: string,
-     * password: string,
-     * }  $attr
+     * @param  array<string, mixed>  $attr
      */
     public function handle(array $attr): User
     {

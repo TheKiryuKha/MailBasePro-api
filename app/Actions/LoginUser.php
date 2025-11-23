@@ -12,7 +12,7 @@ use Laravel\Sanctum\NewAccessToken;
 final readonly class LoginUser
 {
     /**
-     * @param  array{email: string, password: string}  $attr
+     * @param  array<mixed>  $attr
      */
     public function handle(array $attr): NewAccessToken
     {
@@ -20,6 +20,8 @@ final readonly class LoginUser
 
         /** @var User $user */
         $user = Auth::user();
+
+        $user->tokens()->delete();
 
         return $user->createToken($user->name, ['*']);
     }
