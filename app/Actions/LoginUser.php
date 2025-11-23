@@ -16,9 +16,7 @@ final readonly class LoginUser
      */
     public function handle(array $attr): NewAccessToken
     {
-        if (!Auth::attempt($attr)) {
-            throw new Exception('Invalid credentials');
-        }
+        throw_unless(Auth::attempt($attr), new Exception('Invalid credentials'));
 
         /** @var User $user */
         $user = Auth::user();
