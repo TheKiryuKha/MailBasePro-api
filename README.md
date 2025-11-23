@@ -23,7 +23,7 @@ Key fetures:
 composer setup
 ```
 
-4. For runnign test suit:
+4. to run tests:
 
 ```
 composer test
